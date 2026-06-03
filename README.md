@@ -8,6 +8,23 @@ This repository is intended for qualified digital forensics, incident response, 
 
 It is not a public accusation or attribution claim.
 
+This repository is a focused technical anchor supporting the broader **Shadow Cloud** working hypothesis.
+
+The current recommended broader framing is:
+
+> Shadow Cloud is a non-attribution, LOTL-like Apple platform-state / trust-state abuse hypothesis.
+
+For this repository, that means the reviewed question is not only whether classic visible MDM enrollment exists.
+
+The reviewed question is whether Apple platform state, management-adjacent daemon state, restriction state, account/cloud state, telecom state, and evidence-preservation behavior appear to cluster in a way that normal Apple / iOS behavior can explain.
+
+In short:
+
+> Not living off tools.  
+> Living off Apple platform state.
+
+---
+
 ## Core observation
 
 This repository documents a repeated cross-device artifact pattern observed across the devices internally labeled **15G** and **mini1**.
@@ -30,6 +47,18 @@ Observed component families include:
 - forceReset
 - stacks
 - JetsamEvent
+
+Under the updated Shadow Cloud framing, this repository should be read as a **management-adjacent daemon-layer seam review package**.
+
+The narrow technical question is:
+
+> Can repeated management-adjacent daemon failures or clustering normally coexist with `MDMStatus:false` across multiple devices and dates?
+
+The broader Shadow Cloud question is:
+
+> Can Apple platform state itself become the anomaly surface?
+
+---
 
 ## Public repository boundary
 
@@ -54,6 +83,8 @@ This public repository contains only:
 - reproducibility / analysis script
 
 The original raw logs, debug archives, and sysdiagnose archives are preserved separately and can be provided later through a secure upload method, NDA, or evidence-handling procedure if required by a qualified reviewer.
+
+---
 
 ## Devices
 
@@ -81,6 +112,8 @@ Observed OS generation: **iPhone OS 18.5 / 22F76**
 
 mini1 is included as a cross-device replication anchor.
 
+---
+
 ## Reviewed anchor dates
 
 - 2026-03-16 / 15G
@@ -91,6 +124,8 @@ mini1 is included as a cross-device replication anchor.
 - 2026-04-03 / mini1
 - 2026-05-05 / 15G
 - 2026-05-21 / 15G
+
+---
 
 ## Why this matters
 
@@ -108,7 +143,13 @@ However, the reviewed artifacts show a more complex repeated structure:
 
 This creates the following technical question:
 
-Can this repeated structure be explained by normal iOS behavior, or does it represent a support-invisible, policy-adjacent, account/cloud, or management-layer anomaly requiring formal forensic review?
+> Can this repeated structure be explained by normal iOS behavior, or does it represent a support-invisible, policy-adjacent, account/cloud, management-layer, or platform-state anomaly requiring formal forensic review?
+
+Under the LOTL-like Apple platform-state framing, the issue is not whether a malicious tool is visible.
+
+The issue is whether normal-looking platform states and daemon behaviors cluster in a way that may become the anomaly surface.
+
+---
 
 ## High-level timeline
 
@@ -179,6 +220,8 @@ Observed structure:
 - SFA / CKKS / CloudServices in morning and evening windows
 - CommCenter / Baseband / TelephonyBaseband context in Analytics
 
+---
+
 ## Core repeated structure
 
 The repeated structure under review is:
@@ -190,6 +233,10 @@ The repeated structure under review is:
 - SFA / CKKS / CloudServices
 - forceReset / stacks / JetsamEvent
 - recurrence across 15G and mini1
+
+The broader platform-state review question is whether these signals remain ordinary when viewed together across account, policy, restriction, daemon, telecom, and evidence-preservation layers.
+
+---
 
 ## Referenced raw log archives
 
@@ -211,6 +258,8 @@ They are listed only to support later verification and evidence matching.
 
 - mini1-2026-04-03.zip
 
+---
+
 ## Working interpretation
 
 The observed structure is consistent with a management-adjacent failure chain operating while normal MDM enrollment indicators remain false.
@@ -223,6 +272,90 @@ This does not prove attribution.
 
 It does justify qualified forensic review because the same structure appears repeatedly across dates and across more than one device.
 
+Under the updated Shadow Cloud framing, this structure is treated as one possible branch of:
+
+> LOTL-like Apple platform-state / trust-state abuse.
+
+This means the focus is not a named actor.
+
+The focus is whether legitimate-looking Apple platform states and daemon behaviors are clustering in a way that normal iOS behavior can explain.
+
+---
+
+## TTP comparison hypothesis
+
+This repository does not attribute the observed behavior to APT32, APT42, APT28, APT41, APT10, APT27, Pegasus, NSO Group, Apple, iMazing, any state actor, any vendor, or any known spyware family.
+
+However, for reviewer framing, the observed daemon-layer and management-adjacent seam failures are compared at the TTP level with public or conceptual models:
+
+- living-off-the-land-like platform-state abuse
+- management-adjacent legitimate-service abuse
+- visible MDM/profile absent but internal policy or restriction layers present
+- account / cloud / trust-state transition hypotheses
+- user-interaction-gated cloud/account-control workflows
+- telecom / proximity condition concepts
+- evidence-preservation interference models
+
+These are comparison models only.
+
+The updated working hypothesis for the broader Shadow Cloud model is:
+
+> LOTL-like Apple platform-state / trust-state abuse.
+
+For this focused anchor, the local working hypothesis is:
+
+`MDMStatus:false`
+plus
+repeated management-adjacent daemon failure / clustering
+plus
+restriction-layer / account-cloud / telecom context
+plus
+evidence-preservation-adjacent pressure
+within a broader LOTL-like Apple platform-state abuse framing.
+
+This is not an attribution claim.
+
+---
+
+## LOTL-like Apple platform-state relevance
+
+Traditional Living-off-the-Land activity usually refers to legitimate tools, valid accounts, native processes, administrative workflows, or normal-looking cloud activity.
+
+This anchor is not about PowerShell, WMI, RDP, PsExec, SSH, VPN access, or enterprise admin tools.
+
+The analogous Apple ecosystem surfaces in this anchor are:
+
+- `MDMStatus:false`
+- visible management absence
+- managedappdistributiond
+- dmd
+- ScreenTimeAgent
+- ScreenTime
+- ManagedSettings
+- CommCenter
+- Baseband
+- TelephonyBaseband
+- SFA / CKKS / CloudServices
+- forceReset
+- stacks
+- JetsamEvent
+- storage / resource-pressure context
+- evidence-preservation-adjacent behavior
+
+Traditional LOTL:
+
+> Uses legitimate tools.
+
+Shadow Cloud / this anchor:
+
+> May use or distort legitimate platform state.
+
+The review target is therefore not only whether an implant exists.
+
+The review target is whether Apple platform state behaves normally across management-adjacent daemon, restriction, account-cloud, telecom, and evidence-preservation layers.
+
+---
+
 ## What this repository claims
 
 This repository claims only the following:
@@ -231,6 +364,11 @@ This repository claims only the following:
 - The pattern includes `MDMStatus:false` and same-day or near-same-day management-adjacent daemon failures or clustering.
 - The pattern appears across more than one device.
 - The pattern is technically meaningful enough to preserve and submit for qualified forensic review.
+- The pattern may be reviewed as part of the broader Shadow Cloud LOTL-like Apple platform-state / trust-state abuse hypothesis.
+
+This repository does not claim that the hypothesis is proven.
+
+---
 
 ## Important boundary
 
@@ -243,9 +381,36 @@ This repository does **not** establish:
 - APT attribution
 - state attribution
 - Apple attribution
+- iMazing attribution
+- telecom-provider attribution
 - criminal attribution
 - attacker identity
 - MDM enrollment
+- confirmed spyware-family deployment
+- confirmed baseband compromise
+- confirmed SIM compromise
+- confirmed OTP interception
+
+---
+
+## What this repository is not
+
+This repository is not:
+
+- a malware sample repository
+- an exploit repository
+- a zero-day claim
+- an attribution report
+- a public accusation
+- a claim that Apple intentionally performed the observed actions
+- a claim that iMazing intentionally performed the observed actions
+- a claim that any named APT group performed the observed actions
+- a claim that Evil Twin or malicious profile injection has been proven
+- a claim that classic visible MDM enrollment has been proven
+- a claim that daemon crashes alone prove compromise
+- a claim that `MDMStatus:false` alone proves anomaly
+
+---
 
 ## Repository structure
 
@@ -273,9 +438,34 @@ This repository does **not** establish:
 - analysis_output/
   - README for generated script output
 
+---
+
 ## Main review question
 
 Can repeated `MDMStatus:false` observations normally coexist with repeated management-adjacent daemon failures across more than one device, or does this structure justify deeper mobile forensic review?
+
+Under the updated Shadow Cloud framing, the expanded question is:
+
+> Can normal Apple / iOS behavior explain a long-term, cross-device structure in which visible management indicators remain false while management-adjacent daemon activity, restriction-layer signals, telecom context, account-cloud services, and evidence-preservation-adjacent pressure cluster at the same seams?
+
+---
+
+## What reviewers are asked to evaluate
+
+Reviewers are asked to evaluate:
+
+1. Whether repeated `MDMStatus:false` observations are technically meaningful in this context.
+2. Whether management-adjacent daemon activity can normally repeat or cluster while visible MDM indicators remain false.
+3. Whether managedappdistributiond / dmd / ScreenTimeAgent / ManagedSettings activity is ordinary or anomalous in the reviewed windows.
+4. Whether CommCenter / Baseband / TelephonyBaseband context is independent normal behavior or relevant to the broader state pattern.
+5. Whether SFA / CKKS / CloudServices clustering aligns with normal account/cloud behavior or suggests unusual trust-state transition context.
+6. Whether forceReset / stacks / JetsamEvent artifacts are normal resource-pressure noise or meaningful when aligned with the daemon chain.
+7. Whether the same structure appearing across 15G and mini1 is explainable by normal iOS behavior, common OS version behavior, or shared analysis bias.
+8. Whether the observed daemon-layer pattern is better explained as normal Apple platform state or as a possible LOTL-like platform-state anomaly surface.
+9. Whether storage / resource-pressure / evidence-preservation difficulty during related windows is ordinary or relevant to the broader evidence-preservation question.
+10. Whether this focused anchor supports, weakens, or falsifies the broader Shadow Cloud platform-state review model.
+
+---
 
 ## Evidence handling
 
@@ -293,17 +483,50 @@ Preferred options:
 
 ---
 
+## Relationship to the main Shadow Cloud repository
+
+This repository is a focused technical anchor.
+
+It should be read together with the main Shadow Cloud repository:
+
+- `apple-account-control-layer-forensics`
+
+The main repository provides the broader model:
+
+> Shadow Cloud as a non-attribution, LOTL-like Apple platform-state / trust-state abuse hypothesis.
+
+This focused repository provides a narrower management-daemon anchor involving:
+
+- `MDMStatus:false`
+- visible management absence
+- management-adjacent daemon activity
+- managedappdistributiond
+- dmd
+- ScreenTimeAgent
+- ManagedSettings
+- CommCenter / Baseband
+- SFA / CKKS / CloudServices
+- forceReset / stacks / JetsamEvent
+- cross-device recurrence across 15G and mini1
+
+This repository does not replace the main model.
+
+It supports one technical branch of that model.
+
+---
+
 ## Shadow Cloud Hypothesis Mapping
 
 This repository is a focused technical anchor for the MDMStatus:false / management-adjacent daemon failure chain.
 
 It should be read as a supporting package for the main Shadow Cloud working model, not as a standalone attribution claim.
 
-This anchor is most relevant to three reviewer-facing hypotheses:
+This anchor is most relevant to four reviewer-facing hypotheses:
 
 1. **Policy-as-Persistence**
 2. **Deniability-first Design**
 3. **Evidence-Suppression Objective**
+4. **LOTL-like Platform-State Abuse**
 
 These hypotheses are not conclusions.
 
@@ -327,32 +550,32 @@ This does not require a classic malware payload to be visible.
 
 ### Relevant signal categories
 
-* MDMStatus:false
-* supervised:false
-* userIsManaged:false
-* managedappdistributiond
-* dmd
-* RemoteManagementAgent
-* ScreenTimeAgent
-* ManagedSettings
-* FamilyControls
-* restriction-like behavior
-* repeated management-adjacent daemon failures
+- `MDMStatus:false`
+- supervised:false
+- userIsManaged:false
+- managedappdistributiond
+- dmd
+- RemoteManagementAgent
+- ScreenTimeAgent
+- ManagedSettings
+- FamilyControls
+- restriction-like behavior
+- repeated management-adjacent daemon failures
 
 ### What would support this hypothesis
 
-* repeated management-adjacent daemon activity while MDMStatus remains false
-* restriction-like behavior without visible enrollment or supervision
-* recurrence across multiple devices or dates
-* correlation between daemon failure chains and user-visible restriction symptoms
-* mismatch between visible management state and effective policy behavior
+- repeated management-adjacent daemon activity while MDMStatus remains false
+- restriction-like behavior without visible enrollment or supervision
+- recurrence across multiple devices or dates
+- correlation between daemon failure chains and user-visible restriction symptoms
+- mismatch between visible management state and effective policy behavior
 
 ### What would weaken it
 
-* all daemon activity fully explained by normal Apple / iOS background behavior
-* no restriction-like effect associated with the daemon activity
-* same daemon failure chain reproduced on clean control devices
-* vendor-confirmed benign explanation for the full pattern
+- all daemon activity fully explained by normal Apple / iOS background behavior
+- no restriction-like effect associated with the daemon activity
+- same daemon failure chain reproduced on clean control devices
+- vendor-confirmed benign explanation for the full pattern
 
 ---
 
@@ -372,29 +595,29 @@ This anchor asks whether that false-negative surface is itself meaningful.
 
 ### Relevant signal categories
 
-* normal-looking daemon failures
-* repeated management-adjacent errors
-* MDM false state
-* restriction-layer signals
-* resource-pressure logs
-* backup / evidence-preservation anomalies
-* cross-device recurrence
-* timing correlation with important user events
+- normal-looking daemon failures
+- repeated management-adjacent errors
+- MDM false state
+- restriction-layer signals
+- resource-pressure logs
+- backup / evidence-preservation anomalies
+- cross-device recurrence
+- timing correlation with important user events
 
 ### What would support this hypothesis
 
-* daemon failures cluster around restriction, backup, or evidence-relevant events
-* multiple benign-looking symptoms align across time and device
-* the same MDM false / daemon failure pattern repeats on affected devices
-* comparison devices do not show the same clustered pattern
-* failures appear individually harmless but become meaningful when aligned
+- daemon failures cluster around restriction, backup, or evidence-relevant events
+- multiple benign-looking symptoms align across time and device
+- the same MDM false / daemon failure pattern repeats on affected devices
+- comparison devices do not show the same clustered pattern
+- failures appear individually harmless but become meaningful when aligned
 
 ### What would weaken it
 
-* ordinary Apple behavior explains the full daemon pattern
-* no timing relationship to restriction, backup, or evidence-relevant events
-* clean control devices show the same pattern under similar conditions
-* all failures are isolated and non-recurring
+- ordinary Apple behavior explains the full daemon pattern
+- no timing relationship to restriction, backup, or evidence-relevant events
+- clean control devices show the same pattern under similar conditions
+- all failures are isolated and non-recurring
 
 ---
 
@@ -414,29 +637,78 @@ It defines a review question: whether evidence-preservation behavior remained no
 
 ### Relevant signal categories
 
-* backup inconsistency
-* Manifest / RTCR abnormality
-* log preservation degradation
-* storage pressure
-* screenshot or screen-recording difficulty
-* artifact export difficulty
-* repeated daemon activity near evidence-relevant events
-* mismatch between successful user action and abnormal backend artifacts
+- backup inconsistency
+- Manifest / RTCR abnormality
+- log preservation degradation
+- storage pressure
+- screenshot or screen-recording difficulty
+- artifact export difficulty
+- repeated daemon activity near evidence-relevant events
+- mismatch between successful user action and abnormal backend artifacts
 
 ### What would support this hypothesis
 
-* preservation failures repeat during high-value event windows
-* evidence actions correlate with daemon, resource-pressure, backup, or restriction anomalies
-* affected devices show degradation while comparison devices preserve normally
-* failure modes align with MDM false / management-daemon failure chains
-* backup or Manifest anomalies appear near the same windows
+- preservation failures repeat during high-value event windows
+- evidence actions correlate with daemon, resource-pressure, backup, or restriction anomalies
+- affected devices show degradation while comparison devices preserve normally
+- failure modes align with MDM false / management-daemon failure chains
+- backup or Manifest anomalies appear near the same windows
 
 ### What would weaken it
 
-* preservation failures fully explained by storage exhaustion, user error, tool limitations, or ordinary iOS behavior
-* no timing relationship to management-adjacent daemon activity
-* same preservation failures reproduce on clean devices
-* no relationship between daemon failure chains and evidence degradation
+- preservation failures fully explained by storage exhaustion, user error, tool limitations, or ordinary iOS behavior
+- no timing relationship to management-adjacent daemon activity
+- same preservation failures reproduce on clean devices
+- no relationship between daemon failure chains and evidence degradation
+
+---
+
+## 4. LOTL-like Platform-State Abuse
+
+### Relevance to this anchor
+
+This anchor is a direct example of the broader platform-state review question.
+
+The observed concern is not a visible malicious tool.
+
+The observed concern is whether normal-looking Apple platform states may be functioning as the anomaly surface.
+
+Relevant surfaces include:
+
+- `MDMStatus:false`
+- visible management absence
+- management-adjacent daemon activity
+- managedappdistributiond
+- dmd
+- ScreenTimeAgent
+- ManagedSettings
+- CommCenter / Baseband
+- SFA / CKKS / CloudServices
+- forceReset / stacks / JetsamEvent
+- restriction-layer context
+- telecom context
+- evidence-preservation-adjacent pressure
+
+### Reviewer question
+
+> Is this ordinary Apple management-adjacent daemon behavior, or a LOTL-like platform-state anomaly surface?
+
+### What would support this hypothesis
+
+- management-adjacent daemon activity repeating while MDMStatus remains false
+- restriction-like behavior without ordinary visible MDM / supervision / profile indicators
+- daemon-layer clustering aligning with account/cloud or telecom state
+- storage pressure and evidence-preservation difficulty clustering around high-value review windows
+- recurrence across device or account lineage
+- the same pattern appearing across more than one affected device
+
+### What would weaken it
+
+- confirmed ordinary iOS behavior explaining all daemon activity
+- Apple-documented behavior explaining all observed state transitions
+- clean reproduction on control devices under normal conditions
+- no relationship between daemon activity, restriction state, account-cloud state, telecom context, and evidence-preservation windows
+- cross-device recurrence explained by shared OS version, shared settings, or shared analysis bias
 
 ---
 
@@ -444,20 +716,24 @@ It defines a review question: whether evidence-preservation behavior remained no
 
 This repository does not assert:
 
-* malware attribution
-* actor attribution
-* state attribution
-* Apple-side causation
-* classic MDM enrollment
-* known spyware family deployment
-* confirmed C2
-* confirmed payload
-* confirmed exploit chain
-* Evil Twin / rogue AP use as a proven fact
+- malware attribution
+- actor attribution
+- state attribution
+- Apple-side causation
+- iMazing-side causation
+- classic MDM enrollment
+- known spyware family deployment
+- confirmed C2
+- confirmed payload
+- confirmed exploit chain
+- Evil Twin / rogue AP use as a proven fact
+- confirmed telecom compromise
+- confirmed baseband compromise
+- confirmed OTP interception
+- attacker identity
 
-This anchor only asks whether MDMStatus:false combined with repeated management-adjacent daemon failures should be treated as a meaningful control-layer signal for deeper review.
+This anchor only asks whether MDMStatus:false combined with repeated management-adjacent daemon failures should be treated as a meaningful control-layer / platform-state signal for deeper review.
 
 The preferred outcome is not confirmation.
 
 The preferred outcome is a reproducible explanation that supports, weakens, or falsifies each hypothesis.
-
